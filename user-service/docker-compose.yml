@@ -1,0 +1,42 @@
+services: 
+  node:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    container_name: server
+    restart: unless-stopped
+    networks:
+      - shared_network
+    ports:
+      - ${PORT}:${PORT}
+    depends_on:
+      - db
+    volumes:
+      - ./:/usr/src/app
+      - /usr/src/app/node_modules
+
+  db:
+    build:
+      context: .
+      dockerfile: ./db/Dockerfile
+    container_name: db
+    command: -p ${DB_DEV_PORT}
+    restart: unless-stopped
+    networks:
+      - shared_network
+    ports:
+      - ${DB_DEV_PORT}:${DB_DEV_PORT}
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASS}
+      - POSTGRES_DB=${DB_NAME}
+    volumes:
+      - db-data:/var/lib/postgresql/data
+      - db-logs:/var/log/postgresql/
+
+volumes:
+  db-data:
+  db-logs:
+
+networks:
+  shared_network:
