@@ -11,9 +11,10 @@ datasource db {
 }
 
 model History {
-  id             Int           @id @default(autoincrement())
-  timestamp      DateTime
-  event          String
-  request        String
-  response       String
+  id        Int      @id @default(autoincrement())
+  timestamp DateTime
+  event     String
+  userId    Int
+  request   String
+  response  String
 }
