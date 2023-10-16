@@ -18,15 +18,21 @@ Go to `effective-services` folder
 cd ./effective-services
 ```
 
-### User-Service [US]
+### User-Service [US] or User-History-Service [UHS]
 
-Go to `user-service` folder
+[US] Go to `user-service` folder
 
 ```bash
 cd ./user-service
 ```
 
-#### [US] Installation
+[UHS] Go to `user-history-service` folder
+
+```bash
+cd ./user-history-service
+```
+
+#### [US], [UHS] Installation
 
 ```bash
 npm install
@@ -38,7 +44,7 @@ Change file name and adjust variables if needed
 .env.example -> .env
 ```
 
-#### [US] Running server
+#### [US], [UHS] Running server
 
 - run containers(requires [Docker](https://www.docker.com/))
 
@@ -52,7 +58,7 @@ Change file name and adjust variables if needed
   npm run prisma:migrate
   ```
 
-#### [US] Direct database manipulations
+#### [US], [UHS] Direct database manipulations
 
 - start and open prisma studio on <http://localhost:5555>
 
@@ -60,7 +66,7 @@ Change file name and adjust variables if needed
   npm run prisma:studio
   ```
 
-#### [US] Unit tests
+#### [US], [UHS] Unit tests
 
 - run all tests
 
