@@ -19,7 +19,7 @@ class UserController {
       const errors = validationResult(req);
 
       if (!errors.isEmpty()) {
-        next(errors.array());
+        next(errors.throw());
       }
 
       const { id } = req.params;
@@ -36,7 +36,7 @@ class UserController {
       const errors = validationResult(req);
 
       if (!errors.isEmpty()) {
-        next(errors.array());
+        next(errors.throw());
       }
 
       const createUserDto = new CreateUserDto(req.body);
