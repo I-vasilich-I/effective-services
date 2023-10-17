@@ -10,8 +10,6 @@ RUN npm ci
 
 COPY prisma ./prisma/
 
-COPY .env .
-
 COPY . .
 
 EXPOSE 6000
