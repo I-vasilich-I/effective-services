@@ -11,6 +11,7 @@ services:
       - ${PORT}:${PORT}
     depends_on:
       - db
+      - redis_db
     volumes:
       - ./:/usr/src/app
       - /usr/src/app/node_modules
@@ -34,9 +35,23 @@ services:
       - db-data:/var/lib/postgresql/data
       - db-logs:/var/log/postgresql/
 
+  redis_db:
+    image: redis
+    restart: always
+    networks:
+      - shared_network
+    ports:
+      - ${REDIS_PORT}:${REDIS_PORT}
+    environment:
+      - REDIS_PORT=${REDIS_PORT}
+      - ALLOW_EMPTY_PASSWORD=yes
+    volumes:
+      - redis-data:/var/lib/redis/data
+
 volumes:
   db-data:
   db-logs:
+  redis-data:
 
 networks:
   shared_network:
